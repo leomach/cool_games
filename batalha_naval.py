@@ -14,6 +14,11 @@ BARCO = 3
 # Último tiro bem-sucedido do computador
 ultimo_tiro = None
 
+def limpar_tela():
+    """Limpa a tela do terminal no Windows, Linux e macOS."""
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 def print_campo(campo, cliente=False):
     print("")
     print("   1 2 3 4 5 6 7 8 9 10")
@@ -83,7 +88,7 @@ campo_computador_cliente = [
 def jogada_computador():
     global ultimo_tiro
 
-    os.system("clear")
+    limpar_tela()
     def tiro_valido(x, y):
         """Verifica se a coordenada está dentro do tabuleiro e ainda não foi atingida."""
         return 0 <= x < 10 and 0 <= y < 5 and campo_computador_cliente[y][x] == PADRAO
@@ -116,7 +121,7 @@ def jogada_cliente():
 
         x = input("Escolha a coordenada x (1-10): ")
         y = input("Escolha a coordenada y (1-5): ")
-        os.system("clear")
+        limpar_tela()
 
         try:
             x, y = int(x) - 1, int(y) - 1  # Ajuste para índice da matriz (0-based)
@@ -215,7 +220,7 @@ def barcos_computador():
 
 def barcos_cliente():
     """Coloca os barcos do cliente no tabuleiro."""
-    os.system("clear")
+    limpar_tela()
     global dificuldade_cliente
     n_barcos_cliente = 1
     dificuldade_cliente = n_barcos_cliente
@@ -243,7 +248,7 @@ def barcos_cliente():
 
         x = input("Escolha a coordenada x do barco: ")
         y = input("Escolha a coordenada y do barco: ")
-        os.system("clear")
+        limpar_tela()
         try:
             x, y = int(x), int(y)
             x -= 1
@@ -286,7 +291,7 @@ def barcos_cliente():
                 print("")
 
 def instrucoes():
-    os.system("clear")
+    limpar_tela()
     print("Instruções:")
     print("Escolha uma dificuldade, quanto maior, mais barcos o computador terá.")
     print("Após isso, você escolherá onde seu barco ficará.")
@@ -296,7 +301,7 @@ def instrucoes():
     print("")
 
 def escolher_dificuldade():
-    os.system("clear")
+    limpar_tela()
     print("Escolha uma dificuldade")
     print("1. Fácil")
     print("2. Normal")
@@ -313,7 +318,7 @@ def escolher_dificuldade():
     else:
         print("Dificuldade inválida..")
         escolher_dificuldade()
-    os.system("clear")
+    limpar_tela()
 
 def jogar():
     barcos_computador()
@@ -321,7 +326,7 @@ def jogar():
 
     global pontuacao, dificuldade_computador, dificuldade_cliente
     comando = ""
-    os.system("clear")
+    limpar_tela()
 
 
     while True:
